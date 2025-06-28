@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smart Home Hub – Homeverse by OS</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Smart Home Hub</h1>
+    <nav class="main-nav" role="navigation" aria-label="Main navigation">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="devices.html" class="nav-link">Devices</a>
+      <a href="calendar.html" class="nav-link">Calendar</a>
+      <a href="actions.html" class="nav-link">Actions</a>
+      <a href="users.html" class="nav-link">Users</a>
+      <a href="settings.html" class="nav-link">Settings</a>
+    </nav>
+    <div class="header-right">
+      <button id="darkModeToggle" class="mode-toggle" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Upcoming Events Panel -->
+    <section class="panel calendar" aria-labelledby="panel-calendar">
+      <h2 id="panel-calendar"><img src="icons/calendar.svg" class="section-icon">Upcoming Events</h2>
+      <div class="event"><img src="icons/movie.svg" class="event-icon">Movie Night – Fri 8:00 PM</div>
+      <div class="event"><img src="icons/gym.svg" class="event-icon">Gym Workout – Sat 10:00 AM</div>
+      <div class="event"><img src="icons/dinner.svg" class="event-icon">Dinner with Parents – Sun 7:00 PM</div>
+    </section>
+
+    <!-- Scheduled Scenes Panel -->
+    <section class="panel scenes" aria-labelledby="panel-scenes">
+      <h2 id="panel-scenes"><img src="icons/scenes.svg" class="section-icon">Scheduled Scenes</h2>
+      <div class="scene-action">
+        <img src="icons/movie.svg" class="scene-icon">
+        <div><strong>Movie Night</strong><br><small>Fri 8:00 PM</small></div>
+        <button class="run-btn" data-scene="movie">▶️ Run Now</button>
+      </div>
+      <div class="scene-action">
+        <img src="icons/gym.svg" class="scene-icon">
+        <div><strong>Workout Mode</strong><br><small>Sat 10:00 AM</small></div>
+        <button class="run-btn" data-scene="workout">▶️ Run Now</button>
+      </div>
+    </section>
+
+    <!-- Quick Actions Panel -->
+    <section class="panel quick-actions" aria-labelledby="panel-quick">
+      <h2 id="panel-quick"><img src="icons/quick.svg" class="section-icon">Quick Actions</h2>
+      <button class="action-btn" data-action="activateMovie"><img src="icons/movie.svg">Activate Movie Night</button>
+      <button class="action-btn" data-action="lightsOff"><img src="icons/lights.svg">Turn Off All Lights</button>
+      <button class="action-btn" data-action="lockDoors"><img src="icons/lock.svg">Lock Doors</button>
+    </section>
+
+    <!-- Controls Panel -->
+    <div class="panel controls" aria-labelledby="panel-controls">
+      <h2 id="panel-controls"><img src="icons/controls.svg" class="section-icon">Controls</h2>
+      <div class="control-group">
+        <label for="dimmer">Philips Hue Bulb Brightness</label>
+        <input type="range" id="dimmer" min="0" max="100" value="50">
+      </div>
+      <div class="control-group">
+        <label for="fan">Living Room Dyson AM07 Fan Speed</label>
+        <input type="range" id="fan" min="0" max="3" value="1">
+      </div>
+    </div>
+
+    <!-- Weather Panel -->
+    <div class="panel weather" aria-labelledby="panel-weather">
+      <h2 id="panel-weather"><img src="icons/weather.svg" class="section-icon">Weather</h2>
+      <div class="weather-content">
+        <img id="weatherIcon" class="weather-icon loading" alt="Loading weather">
+        <div id="weatherTemp" class="temp loading">--°C</div>
+        <div id="weatherCondition" class="condition loading">--</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Smart Home Hub – Homeverse by OS
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
+<script>
+  // Dark mode toggle
+  document.getElementById('darkModeToggle').addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+    this.classList.toggle('active');
+  });
+
+  // Fetch weather data
+  async function fetchWeather() {
+    try {
+      const response = await fetch('https://api.weatherapi.com/v1/current.json?key=YOUR_API_KEY&q=London');
+      const data = await response.json();
+      document.getElementById('weatherIcon').src = data.current.condition.icon;
+      document.getElementById('weatherTemp').textContent = `${data.current.temp_c}°C`;
+      document.getElementById('weatherCondition').textContent = data.current.condition.text;
+      document.querySelectorAll('.loading').forEach(el => el.classList.remove('loading'));
+    } catch (error) {
+      console.error('Error fetching weather:', error);
+    }
+  }
+
+  fetchWeather();

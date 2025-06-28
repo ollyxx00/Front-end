@@ -1,0 +1,230 @@
+:root {
+  --bg: #fcf8f5;
+  --panel-bg: #fffaf0;
+  --text: #333;
+  --accent: #ff7e5f;
+  --hover-bg: #ffe2d9;
+}
+body.dark {
+  --bg: #1e1e1e;
+  --panel-bg: #2c2c2c;
+  --text: #eee;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Header */
+header {
+  background: linear-gradient(135deg, #ff9a76, #ffc3a0);
+  color: white;
+  padding: 1.75rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  animation: fadeSlideDown 0.6s ease-out both;
+}
+header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
+}
+.main-nav {
+  display: flex;
+  gap: 1rem;
+}
+.main-nav .nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  transition: background 0.3s, transform 0.2s;
+}
+.main-nav .nav-link:hover,
+.main-nav .nav-link.active {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.03);
+}
+.header-right {
+  display: flex;
+  align-items: center;
+}
+.mode-toggle {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.4rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+.mode-toggle:hover {
+  background: rgba(255,255,255,0.3);
+  transform: scale(1.1);
+}
+
+/* Main Layout */
+main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* Panels */
+.panel {
+  background: var(--panel-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  animation: fadeSlideUp 0.7s ease-out both;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+.panel:hover {
+  transform: translateY(-4px);
+}
+
+/* Panel Titles */
+.panel h2 {
+  display: flex;
+  align-items: center;
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.section-icon {
+  width: 28px;
+  height: 28px;
+  margin-right: 0.75rem;
+  fill: var(--accent);
+}
+
+/* Event Items */
+.event {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  transition: background 0.2s ease, transform 0.2s ease;
+  cursor: default;
+}
+.event:hover {
+  background: var(--hover-bg);
+  transform: translateX(4px);
+}
+.event-icon {
+  width: 30px;
+  margin-right: 0.75rem;
+}
+
+/* Scenes and Actions */
+.scene-action,
+.scene-btn,
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--panel-bg);
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 8px;
+  transition: background 0.3s, transform 0.2s;
+}
+.scene-action:hover,
+.scene-btn:hover,
+.action-btn:hover {
+  background: var(--hover-bg);
+  transform: translateY(-2px);
+}
+.scene-icon {
+  width: 28px;
+  margin-right: 0.75rem;
+}
+
+/* Control Groups */
+.control-group {
+  margin: 1rem 0;
+}
+.control-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+input[type=range] {
+  width: 100%;
+}
+
+/* Weather Panel */
+.weather {
+  text-align: center;
+}
+.weather-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.weather-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 0.5rem;
+  animation: softPulse 1.6s ease-in-out infinite alternate;
+}
+.temp {
+  font-size: 2.6rem;
+  margin: 0.2rem 0;
+}
+.condition {
+  text-transform: capitalize;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 0.75rem;
+  background: rgba(0,0,0,0.03);
+}
+
+/* Animations */
+@keyframes fadeSlideDown {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeSlideUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes softPulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(1.05); opacity: 1; }
+}
+
+/* Shimmer loader */
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: 200px 0; }
+}
+.weather .loading {
+  background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
+  background-size: 400px 100%;
+  color: transparent;
+  animation: shimmer 1.2s infinite linear;
+  border-radius: 6px;
+}
