@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smart Home Hub - Homeverse by OS</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Smart Home Hub</h1>
+    <div class="dropdown">
+      <button class="dropbtn" aria-haspopup="true" aria-expanded="false">Menu ▾</button>
+      <div class="dropdown-content" role="menu">
+        <a href="#">Your Smart Home</a>
+        <a href="#">Devices</a>
+        <a href="#">Calendar</a>
+        <a href="#">Actions</a>
+        <a href="#">Users</a>
+        <a href="#">Settings</a>
+        <a href="#">Online Support</a>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="connected-devices" title="3 devices connected" tabindex="0">
+        <svg class="device-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2C8.13 2 5 5.13..."></path>
+        </svg>
+        <span>3 Devices</span>
+      </div>
+      <button class="settings-icon" title="Settings" aria-label="Settings">
+        <svg viewBox="0 0 24 24"><path fill="white" d="M12 8a4 4 0..."></path></svg>
+      </button>
+      <button id="darkModeToggle" class="mode-toggle" aria-label="Toggle Dark Mode">🌙</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="panel calendar">
+      <h2><svg class="section-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="..."/></svg> Upcoming Events</h2>
+      <div class="event">Friday 8:00 PM – Movie Night with the boys 🎬</div>
+      <div class="event">Saturday 10:00 AM – Gym Workout with Dareczek 💪</div>
+      <div class="event">Sunday 7:00 PM – Dinner with lovely parents 🍽️</div>
+    </div>
+
+    <div class="panel scenes">
+      <h2><svg class="section-icon" viewBox="0 0 24 24"><path d="..."/></svg> Scheduled Scenes</h2>
+      <div class="scene-action">
+        <div><strong>Movie Night</strong><br>Fri 8:00 PM</div>
+        <button class="run-btn" data-scene="movie">Run Now</button>
+      </div>
+      <div class="scene-action">
+        <div><strong>Workout Mode</strong><br>Sat 10:00 AM</div>
+        <button class="run-btn" data-scene="workout">Run Now</button>
+      </div>
+    </div>
+
+    <div class="panel quick-actions">
+      <h2><svg class="section-icon" viewBox="0 0 24 24"><path d="..."/></svg> Quick Actions</h2>
+      <button data-action="activateMovie">Activate Movie Night</button>
+      <button data-action="lightsOff">Turn Off All Lights</button>
+      <button data-action="lockDoors">Lock Doors</button>
+    </div>
+
+    <div class="remote-weather">
+      <div class="panel controls">
+        <h2><svg class="section-icon" viewBox="0 0 24 24"><path d="..."/></svg> Controls</h2>
+        <div class="control-group">
+          <label for="dimmer">Philips Hue Bulb</label>
+          <input type="range" id="dimmer" min="0" max="100" value="50">
+        </div>
+        <div class="control-group">
+          <label for="fan">Living Room Dyson AM07 Fan</label>
+          <input type="range" id="fan" min="0" max="3" value="1">
+        </div>
+      </div>
+      <div class="panel weather">
+        <h2><svg class="section-icon" viewBox="0 0 24 24"><path d="..."/></svg> Weather</h2>
+        <img id="weatherIcon" class="weather-icon" src="" alt="Weather icon">
+        <div class="temp" id="weatherTemp">--°C</div>
+        <div class="condition" id="weatherCondition">--</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Smart Home Hub - Homeverse by OS. All rights reserved.
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

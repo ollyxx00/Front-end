@@ -1,0 +1,222 @@
+/* Variables & Theming */
+:root {
+  --bg: #fcf8f5;
+  --panel-bg: #fffaf0;
+  --text: #333;
+  --accent: #ff7e5f;
+  --hover-bg: #ffe2d9;
+}
+body.dark {
+  --bg: #1e1e1e;
+  --panel-bg: #2c2c2c;
+  --text: #eee;
+}
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+    /* === Header Styling === */
+header {
+  background: linear-gradient(135deg, #ff9a76, #ffc3a0);
+  color: white;
+  padding: 1.75rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  animation: fadeSlideDown 0.6s ease-out both;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: relative;
+}
+.dropbtn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s, border-color 0.3s;
+}
+.dropbtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: white;
+}
+.dropdown-content {
+  background-color: var(--panel-bg);
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  overflow: hidden;
+  padding: 0.5rem 0;
+}
+.dropdown-content a {
+  font-size: 0.95rem;
+  padding: 0.6rem 1rem;
+  color: var(--text);
+}
+
+/* Right-aligned Icons */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+.connected-devices,
+.settings-icon,
+.mode-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  font-weight: 500;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+}
+.connected-devices:hover,
+.settings-icon:hover,
+.mode-toggle:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+.device-icon,
+.settings-icon svg {
+  width: 26px;
+  height: 26px;
+  fill: white;
+}
+.mode-toggle {
+  font-size: 1.2rem;
+  border-radius: 50%;
+  padding: 0.25rem 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  transition: background 0.3s;
+}
+.mode-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Header animation */
+@keyframes fadeSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+ /* copy previous styling, swapping colors with variables */
+.dropbtn, .settings-icon { background: transparent; color: var(--text); }
+
+/* LAYOUT GRID */
+main {
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 3rem;
+}
+@media (max-width: 1024px) {
+  main,
+  .remote-weather {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+}
+
+/* PANELS */
+.panel { background: var(--panel-bg); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 2rem; animation: fadeIn 0.6s ease-out both; }
+/* Buttons, events, quick actions – use --hover-bg on hover, --accent for accents */
+
+/* === Animations === */
+
+/* Fade In with Slide-Up */
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.panel {
+  animation: fadeSlideUp 0.7s ease-out both;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+/* Subtle Pulse for Icons (active device/attention grabber) */
+@keyframes softPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+.device-icon {
+  animation: softPulse 1.6s ease-in-out infinite alternate;
+}
+
+/* Button hover lift */
+button:hover,
+.scene-action:hover,
+.quick-actions button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background-color: var(--hover-bg);
+}
+
+/* Smooth slide for dropdown */
+.dropdown-content {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  transform: translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+}
+.dropdown:hover .dropdown-content,
+.dropdown .dropdown-content[style*="block"] {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Temperature shimmer loader */
+@keyframes shimmer {
+  0% {
+    background-position: -100px 0;
+  }
+  100% {
+    background-position: 100px 0;
+  }
+}
+.weather .temp.loading,
+.weather .condition.loading {
+  background: linear-gradient(90deg, #eee 25%, #ddd 50%, #eee 75%);
+  background-size: 200px 100%;
+  color: transparent;
+  animation: shimmer 1.2s infinite linear;
+  border-radius: 6px;
+}
