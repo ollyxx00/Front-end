@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Home Hub</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f6f8;
+      color: #333;
+    }
+
+    header {
+      background-color: #0f62fe;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    main {
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+    }
+
+    .calendar, .scenes {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    .event {
+      padding: 0.5rem 1rem;
+      margin-bottom: 0.75rem;
+      border-left: 4px solid #0f62fe;
+      background: #f0f4ff;
+      border-radius: 8px;
+    }
+
+    .scene-action {
+      padding: 1rem;
+      background: #e5f3ff;
+      border: 1px solid #0f62fe;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Smart Home Hub</h1>
+    <p>Sync your calendar to automate your home</p>
+  </header>
+
+  <main>
+    <div class="calendar">
+      <h2>Upcoming Calendar Events</h2>
+      <div class="event">Friday 8:00 PM - Movie Night 🎬</div>
+      <div class="event">Saturday 10:00 AM - Gym Workout 💪</div>
+      <div class="event">Sunday 7:00 PM - Dinner with Friends 🍽️</div>
+    </div>
+
+    <div class="scenes">
+      <h2>Scheduled Scenes</h2>
+      <div class="scene-action">
+        <strong>Movie Night</strong><br />
+        Scheduled: Friday at 8:00 PM<br />
+        Actions: Lower blinds, dim lights, turn on TV
+      </div>
+
+      <div class="scene-action">
+        <strong>Workout Mode</strong><br />
+        Scheduled: Saturday at 10:00 AM<br />
+        Actions: Brighten lights, play music
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Smart Home Hub. All rights reserved.
+  </footer>
+</body>
+</html>
